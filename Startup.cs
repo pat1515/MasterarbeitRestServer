@@ -42,6 +42,8 @@ namespace MasterarbeitRestServer
 
             app.UseAuthorization();
 
+            //Test 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
