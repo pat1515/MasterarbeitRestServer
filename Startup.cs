@@ -30,8 +30,10 @@ namespace MasterarbeitRestServer
         {            
             string conString = "User Id=ADMIN;Password=pS18062016!Linus;Data Source=masterarbeitdb_high";
 
-            OracleConfiguration.TnsAdmin = "DB";
+            OracleConfiguration.TnsAdmin = @"D:\home\site\wwwroot\DB";
             OracleConfiguration.WalletLocation = OracleConfiguration.TnsAdmin;
+
+            
 
             services.AddDbContext<Context>(opt => opt.UseOracle(conString));
             
