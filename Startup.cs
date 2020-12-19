@@ -31,7 +31,7 @@ namespace MasterarbeitRestServer
             string conString = "User Id=ADMIN;Password=pS18062016!Linus;";
 
             string WalletLocLokal = @"C:\Users\pat15\Desktop\master\abschlussarbeit\sourcen\MasterarbeitRestServer\DB";
-            string WalletLocCloud = @"D:\home\site\wwwroot\DB";
+            string WalletLocCloud = @"D:\home\site\repository\DB";
 
 
 
