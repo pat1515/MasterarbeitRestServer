@@ -9,7 +9,6 @@ namespace MasterarbeitRestServer.Data
         {
             
         }
-
         
         public DbSet<Autor> AUTOR { get; set; }
 

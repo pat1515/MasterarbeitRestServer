@@ -27,8 +27,7 @@ namespace MasterarbeitRestServer
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            
+        {            
             string conString = "User Id=ADMIN;Password=pS18062016!Linus;Data Source=masterarbeitdb_high";
 
             OracleConfiguration.TnsAdmin = @"C:\Users\pat15\Documents\Wallet_MasterarbeitDB";
