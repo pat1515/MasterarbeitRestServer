@@ -11,11 +11,11 @@ namespace MasterarbeitRestServer.Controllers
     [Route("api/authors")]
     public class AutorController : ControllerBase
     {
-        private readonly IAutorRepository _autorRepository;
+        private readonly IRepository _repository;
 
-        public AutorController(IAutorRepository autorRepository)
+        public AutorController(IRepository repository)
         {
-            _autorRepository = autorRepository;
+            _repository = repository;
         }
 
 
@@ -23,9 +23,7 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Autor>> GetAllAuthors()
         {
-            var authors = _autorRepository.GetAllAuthors();  
-
-            
+            var authors = _repository.GetAllAuthors();              
 
             if (authors != null)
             {
@@ -36,8 +34,10 @@ namespace MasterarbeitRestServer.Controllers
                     authorsDTO.Add(MapAutor(author));
                 } 
 
-                authorsDTO.Select(a => CreateLinksForAuthor(a));
-
+                foreach (var authorDTO in authorsDTO)
+                {
+                    CreateLinksForAuthor(authorDTO);
+                } 
 
                 return Ok(authorsDTO);
             }
@@ -51,7 +51,7 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet("{id}", Name = nameof(GetAuthor))]
         public ActionResult<IEnumerable<Autor>> GetAuthor(int id)
         {
-            var autor = _autorRepository.GetAuthorById(id);    
+            var autor = _repository.GetAuthorById(id);    
 
             if (autor != null)
             {
@@ -65,7 +65,13 @@ namespace MasterarbeitRestServer.Controllers
 
         private AutorDTO CreateLinksForAuthor(AutorDTO autor)
         {
-            
+            IEnumerable<Buch> buecher = _repository.GetBuchIDsVonAutor(autor.ID);
+
+            foreach (Buch buch in buecher)
+            {
+                autor.Buecher.Add("http://localhost:5000/api/books/" + buch.ID.ToString());
+            }
+
 
             return autor;
         }

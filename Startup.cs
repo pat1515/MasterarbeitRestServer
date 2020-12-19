@@ -39,7 +39,7 @@ namespace MasterarbeitRestServer
             services.AddControllers();
 
 
-            services.AddScoped<IAutorRepository, OracleRepository>();
+            services.AddScoped<IRepository, OracleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

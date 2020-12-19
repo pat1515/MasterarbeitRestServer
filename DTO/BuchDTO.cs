@@ -1,8 +1,8 @@
 using System;
 
-namespace MasterarbeitRestServer.Models
+namespace MasterarbeitRestServer.DTO 
 {
-    public class Buch
+    public class BuchDTO
     {
         public int ID { get; set; }
         public int AUTOR_ID { get; set; }

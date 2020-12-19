@@ -13,8 +13,8 @@ namespace MasterarbeitRestServer.Data
         
         public DbSet<Autor> AUTOR { get; set; }
 
-        public DbSet<Buch> Buch { get; set; }
+        public DbSet<Buch> BUCH { get; set; }
 
-        public DbSet<Rezension> Rezension { get; set; }
+        public DbSet<Rezension> REZENSION { get; set; }
     }
 }

@@ -4,9 +4,9 @@ namespace MasterarbeitRestServer.Models
 {
     public class Rezension
     {
-        public int Id { get; set; }
-        public int Buch_Id { get; set; }
-        public DateTime Datum { get; set; }
-        public int Sterne { get; set; }
+        public int ID { get; set; }
+        public int BUCH_ID { get; set; }
+        public DateTime DATUM { get; set; }
+        public int STERNE { get; set; }
     }
 }
