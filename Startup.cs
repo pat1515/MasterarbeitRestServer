@@ -30,8 +30,12 @@ namespace MasterarbeitRestServer
         {            
             string conString = "User Id=ADMIN;Password=pS18062016!Linus;Data Source=masterarbeitdb_high";
 
-            OracleConfiguration.TnsAdmin = @"..\repository\DB";
-            OracleConfiguration.WalletLocation = OracleConfiguration.TnsAdmin;
+            //Enter port, host name or IP, service name, and wallet directory for your Oracle Autonomous DB.
+            conString += "Data Source=(description=(address=(protocol=tcps)(port=1522)(host=adb.eu-frankfurt-1.oraclecloud.com))(connect_data=(service_name=ok6xrgnsfgkpak1_masterarbeitdb_high.adb.oraclecloud.com))(SECURITY = (MY_WALLET_DIRECTORY = ..\\repository\\DB)));";
+
+
+            //OracleConfiguration.TnsAdmin = @"..\repository\DB";
+            //OracleConfiguration.WalletLocation = OracleConfiguration.TnsAdmin;
 
             
 
