@@ -2,14 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MasterarbeitRestServer.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Oracle.ManagedDataAccess.Client;
 
 namespace MasterarbeitRestServer
 {
@@ -25,7 +28,18 @@ namespace MasterarbeitRestServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            string conString = "User Id=ADMIN;Password=pS18062016!Linus;Data Source=masterarbeitdb_high";
+
+            OracleConfiguration.TnsAdmin = @"C:\Users\pat15\Documents\Wallet_MasterarbeitDB";
+            OracleConfiguration.WalletLocation = OracleConfiguration.TnsAdmin;
+
+            services.AddDbContext<Context>(opt => opt.UseOracle(conString));
+            
             services.AddControllers();
+
+
+            services.AddScoped<IAutorRepository, OracleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +50,7 @@ namespace MasterarbeitRestServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
