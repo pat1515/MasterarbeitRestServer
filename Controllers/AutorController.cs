@@ -84,7 +84,7 @@ namespace MasterarbeitRestServer.Controllers
 
             dto.ID = autor.ID;
             dto.LAND = autor.LAND;
-            dto.LEBENSALTER = autor.LEBENSALTER;
+            dto.LEBENSALTER = autor.ALTER;
             dto.NACHNAME = autor.NACHNAME;
             dto.ORT = autor.ORT;
             dto.VORNAME = autor.VORNAME;
