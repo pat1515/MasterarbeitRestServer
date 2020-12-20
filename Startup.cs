@@ -33,7 +33,7 @@ namespace MasterarbeitRestServer
             string WalletLocLokal = @"C:\Users\pat15\Desktop\master\abschlussarbeit\sourcen\MasterarbeitRestServer\DB";
             string WalletLocCloud = @"D:\home\site\repository\DB";
 
-
+            // Kommentar
 
             string walletLoc = WalletLocCloud;
 
