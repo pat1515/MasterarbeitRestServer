@@ -4,11 +4,11 @@ using MasterarbeitRestServer.Models;
 
 namespace MasterarbeitRestServer.Data
 {
-    public class OracleRepository : IRepository
+    public class SqlServerRepository : IRepository
     {
         private readonly Context _context;
 
-        public OracleRepository(Context context)
+        public SqlServerRepository(Context context)
         {
             _context = context;
         }

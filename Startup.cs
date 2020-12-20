@@ -27,34 +27,14 @@ namespace MasterarbeitRestServer
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
-            //string conString = "User Id=ADMIN;Password=pS18062016!Linus;";
-
-            //string WalletLocLokal = @"C:\Users\pat15\Desktop\master\abschlussarbeit\sourcen\MasterarbeitRestServer\DB";
-            ///string WalletLocCloud = @"D:\home\site\repository\DB";
-
-            // Kommentar
-
-            //string walletLoc = WalletLocCloud;
-
-            //Enter port, host name or IP, service name, and wallet directory for your Oracle Autonomous DB.
-            //conString += "Data Source=(description=(address=(protocol=tcps)(port=1522)(host=adb.eu-frankfurt-1.oraclecloud.com))(connect_data=(service_name=ok6xrgnsfgkpak1_masterarbeitdb_high.adb.oraclecloud.com))(SECURITY = (MY_WALLET_DIRECTORY = " + walletLoc + ")));";
-
-
-            //OracleConfiguration.TnsAdmin = @"..\repository\DB";
-            //OracleConfiguration.WalletLocation = OracleConfiguration.TnsAdmin;
-
-
-            string connectionString = 
-                "Server=pat1515.database.windows.net;Database=pat;User Id=Patrick;Password=srrs58!!;";
+        {
+            string connectionString = "Server=pat1515.database.windows.net;Database=pat;User Id=ApiLogin;Password=pa55w0rt!;";
             
-
             services.AddDbContext<Context>(opt => opt.UseSqlServer(connectionString));
             
             services.AddControllers();
 
-
-            services.AddScoped<IRepository, OracleRepository>();
+            services.AddScoped<IRepository, SqlServerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,8 +50,6 @@ namespace MasterarbeitRestServer
             app.UseRouting();
 
             app.UseAuthorization();
-
-            //Test 
 
             app.UseEndpoints(endpoints =>
             {

@@ -14,6 +14,5 @@ namespace MasterarbeitRestServer.Data
 
         public DbSet<Buch> BUCH { get; set; }
 
-        public DbSet<Rezension> REZENSION { get; set; }
     }
 }
