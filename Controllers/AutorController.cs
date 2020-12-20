@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using MasterarbeitRestServer.Data;
 using MasterarbeitRestServer.DTO;
 using MasterarbeitRestServer.Models;
@@ -13,6 +14,8 @@ namespace MasterarbeitRestServer.Controllers
     {
         private readonly IRepository _repository;
 
+        private readonly string HostURL = "https://masterarbeitRestServer.azurewebsites.net/";
+
         public AutorController(IRepository repository)
         {
             _repository = repository;
@@ -23,7 +26,7 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Autor>> GetAllAuthors()
         {
-            var authors = _repository.GetAllAuthors();              
+            var authors = _repository.GetAlleAutoren();              
 
             if (authors != null)
             {
@@ -42,7 +45,7 @@ namespace MasterarbeitRestServer.Controllers
                 return Ok(authorsDTO);
             }
 
-
+            
        
             return NotFound();
         }
@@ -51,7 +54,7 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet("{id}", Name = nameof(GetAuthor))]
         public ActionResult<IEnumerable<Autor>> GetAuthor(int id)
         {
-            var autor = _repository.GetAuthorById(id);    
+            var autor = _repository.GetAutorAusId(id);    
 
             if (autor != null)
             {
@@ -65,13 +68,12 @@ namespace MasterarbeitRestServer.Controllers
 
         private AutorDTO CreateLinksForAuthor(AutorDTO autor)
         {
-            IEnumerable<Buch> buecher = _repository.GetBuchIDsVonAutor(autor.ID);
+            IEnumerable<Buch> buecher = _repository.GetBuecherVonAutor(autor.ID);
 
             foreach (Buch buch in buecher)
             {
-                autor.Buecher.Add("http://localhost:5000/api/books/" + buch.ID.ToString());
+                autor.Buecher.Add(HostURL + "api/books/" + buch.ID.ToString());
             }
-
 
             return autor;
         }

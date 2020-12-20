@@ -5,15 +5,15 @@ namespace MasterarbeitRestServer.Data
 {
     public interface IRepository
     {
-        IEnumerable<Autor> GetAllAuthors();
+        IEnumerable<Autor> GetAlleAutoren();
         
-        Autor GetAuthorById(int id); 
+        Autor GetAutorAusId(int id); 
 
 
-        IEnumerable<Buch> GetAllBooks();
+        IEnumerable<Buch> GetAlleBuecher();
         
-        Buch GetBookById(int id); 
+        Buch GetBuchAusId(int id); 
 
-        IEnumerable<Buch> GetBuchIDsVonAutor(int autor_id);
+        IEnumerable<Buch> GetBuecherVonAutor(int autor_id);
     }
 }

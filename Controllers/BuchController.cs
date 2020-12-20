@@ -23,7 +23,7 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Buch>> GetAllBooks()
         {
-            var books = _repository.GetAllBooks();              
+            var books = _repository.GetAlleBuecher();              
 
             if (books != null)
             {
@@ -51,7 +51,7 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet("{id}", Name = nameof(GetBook))]
         public ActionResult<IEnumerable<Autor>> GetBook(int id)
         {
-            var buch = _repository.GetBookById(id);    
+            var buch = _repository.GetBuchAusId(id);    
 
             if (buch != null)
             {
