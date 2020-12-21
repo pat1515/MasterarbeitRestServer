@@ -9,6 +9,18 @@ namespace MasterarbeitRestServer.Data
         {
             
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /*
+               modelBuilder.Entity<Buch>()
+                    .HasOne(_ => _.Autor)
+                    .WithMany(_ => _.Buchs)
+                    .HasForeignKey(_ => _.AUTOR_ID);
+            */
+        }
+        
         
         public DbSet<Autor> AUTOR { get; set; }
 

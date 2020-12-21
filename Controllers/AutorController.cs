@@ -56,6 +56,7 @@ namespace MasterarbeitRestServer.Controllers
         {
             var autor = _repository.GetAutorAusId(id);    
 
+            
             if (autor != null)
             {
                 var autorDTO = MapAutor(autor);            
@@ -63,6 +64,7 @@ namespace MasterarbeitRestServer.Controllers
             }
        
             return NotFound();
+            
         }
 
 

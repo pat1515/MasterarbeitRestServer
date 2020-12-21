@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MasterarbeitRestServer.Models 
 {
     public class Autor
@@ -11,5 +13,6 @@ namespace MasterarbeitRestServer.Models
         public int GROESSE { get; set; }
         //public string ADRESSE { get; set; }
 
+        //public ICollection<Buch> Buchs { get; set; }
     }
 }

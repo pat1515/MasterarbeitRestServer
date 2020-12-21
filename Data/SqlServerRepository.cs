@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MasterarbeitRestServer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MasterarbeitRestServer.Data
 {
@@ -15,12 +16,14 @@ namespace MasterarbeitRestServer.Data
 
         public IEnumerable<Autor> GetAlleAutoren()
         {
-            return _context.AUTOR.ToList();
+            return _context.AUTOR;
         }
 
         public Autor GetAutorAusId(int id)
         {
-            return _context.AUTOR.FirstOrDefault(a => a.ID == id);
+            var autor = _context.AUTOR.FirstOrDefault(a => a.ID == id);            
+
+            return autor;
         }
 
 

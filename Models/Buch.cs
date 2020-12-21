@@ -13,5 +13,7 @@ namespace MasterarbeitRestServer.Models
         public int AUFLAGE { get; set; }
         public string SPRACHE { get; set; }
         public string DRUCKORT { get; set; }
+
+
     }
 }

@@ -33,6 +33,10 @@ namespace MasterarbeitRestServer
             
             services.AddControllers();
 
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddScoped<IRepository, SqlServerRepository>();
         }
 
@@ -44,7 +48,7 @@ namespace MasterarbeitRestServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
