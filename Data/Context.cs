@@ -3,9 +3,9 @@ using MasterarbeitRestServer.Models;
 
 namespace MasterarbeitRestServer.Data
 {
-    public class Context : DbContext
+    public class ApiContext : DbContext
     {
-        public Context(DbContextOptions<Context> opt) : base(opt)
+        public ApiContext(DbContextOptions<ApiContext> opt) : base(opt)
         {
             
         }

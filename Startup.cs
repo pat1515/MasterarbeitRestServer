@@ -29,7 +29,7 @@ namespace MasterarbeitRestServer
         {
             string connectionString = "Server=pat1515.database.windows.net;Database=pat;User Id=ApiLogin;Password=pa55w0rt!;";
             
-            services.AddDbContext<Context>(opt => opt.UseSqlServer(connectionString));
+            services.AddDbContext<ApiContext>(opt => opt.UseSqlServer(connectionString));
             
             services.AddControllers();
 
@@ -48,7 +48,7 @@ namespace MasterarbeitRestServer
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
