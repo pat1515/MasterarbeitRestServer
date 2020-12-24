@@ -15,9 +15,6 @@ namespace MasterarbeitRestServer.Data
         IEnumerable<Buch> GetAlleBuecher();
         
         // Ein bestimmtes Buch anhand der ID (Primärschlüssel) zurückgeben
-        Buch GetBuchAusId(int id); 
-
-        // Suchen aller Bücher des angegebenen Autors (ID)
-        IEnumerable<Buch> GetBuecherVonAutor(int autor_id);
+        Buch GetBuchAusId(int id);
     }
 }

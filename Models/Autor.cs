@@ -11,8 +11,6 @@ namespace MasterarbeitRestServer.Models
         public string ORT { get; set; }
         public string LAND { get; set; }
         public int GROESSE { get; set; }
-        //public string ADRESSE { get; set; }
-
-        //public ICollection<Buch> Buchs { get; set; }
+        public List<Buch> BUECHER { get; set; }
     }
 }

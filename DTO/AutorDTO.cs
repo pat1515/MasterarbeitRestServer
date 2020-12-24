@@ -14,6 +14,6 @@ namespace MasterarbeitRestServer.DTO
         //public string ADRESSE { get; set; }
 
 
-        public List<string> Buecher { get; set; } = new List<string>();
+        public List<string> BuchLinks { get; set; } = new List<string>();
     }
 }

@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace MasterarbeitRestServer.Controllers
 {
     [ApiController]
-    [Route("api/books")]
+    [Route("api/buecher")]
     public class BuchController : ControllerBase
-    {
-
-        
+    {        
         private readonly IRepository _repository;
 
         public BuchController(IRepository repository)
@@ -21,7 +19,7 @@ namespace MasterarbeitRestServer.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<Buch>> GetAllBooks()
+        public ActionResult<IEnumerable<Buch>> GetAlleBuecher()
         {
             var books = _repository.GetAlleBuecher();              
 
@@ -34,22 +32,15 @@ namespace MasterarbeitRestServer.Controllers
                     booksDTO.Add(MapBuch(book));
                 } 
 
-                //foreach (var authorDTO in authorsDTO)
-                //{
-                //    CreateLinksForAuthor(authorDTO);
-                //} 
-
                 return Ok(booksDTO);
             }
-
-
        
             return NotFound();
         }
 
 
-        [HttpGet("{id}", Name = nameof(GetBook))]
-        public ActionResult<IEnumerable<Autor>> GetBook(int id)
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Autor>> GetBuchAusId(int id)
         {
             var buch = _repository.GetBuchAusId(id);    
 
@@ -57,7 +48,6 @@ namespace MasterarbeitRestServer.Controllers
             {
                 var bookDTO = MapBuch(buch);    
                 return Ok(bookDTO);       
-                //return Ok(CreateLinksForAuthor(autorDTO));
             }
        
             return NotFound();

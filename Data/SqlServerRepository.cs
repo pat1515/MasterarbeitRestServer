@@ -19,13 +19,13 @@ namespace MasterarbeitRestServer.Data
         // Alle Autoren lesen
         public IEnumerable<Autor> GetAlleAutoren()
         {
-            return _context.AUTOR; // entspricht Inhalt der Tabelle AUTOR
+            return _context.AUTOR.Include(a => a.BUECHER);; // entspricht Inhalt der Tabelle AUTOR
         }
 
         // Autor anhand von ID lesen
         public Autor GetAutorAusId(int id)
         {
-            return _context.AUTOR.FirstOrDefault(a => a.ID == id);            
+            return _context.AUTOR.Include(async => async.BUECHER).FirstOrDefault(i => i.ID == id);         
         }
 
         // Alle Bücher lesen

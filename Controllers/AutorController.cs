@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MasterarbeitRestServer.Controllers
 {
     [ApiController]
-    [Route("api/authors")]
+    [Route("api/autoren")]
     public class AutorController : ControllerBase
     {
         // Verweis auf das Repository
@@ -38,11 +38,7 @@ namespace MasterarbeitRestServer.Controllers
                 var authorsDTO = new List<AutorDTO>(); 
 
                 foreach (var author in authors)                
-                    authorsDTO.Add(MapAutor(author));                
-
-                // Für alle Autoren werden die Links erstellt
-                foreach (var authorDTO in authorsDTO)                
-                    CreateLinksForAuthor(authorDTO);
+                    authorsDTO.Add(MapAutor_CreateLinks(author));
                  
                 return Ok(authorsDTO);
             }
@@ -51,8 +47,8 @@ namespace MasterarbeitRestServer.Controllers
             return NotFound();
         }
 
-        // Autor auf DTO mappen
-        private AutorDTO MapAutor(Autor autor)
+        // Autor auf DTO mappen & Links erzeugen
+        private AutorDTO MapAutor_CreateLinks(Autor autor)
         {
             AutorDTO dto = new AutorDTO();
             dto.ID = autor.ID;
@@ -62,12 +58,20 @@ namespace MasterarbeitRestServer.Controllers
             dto.ORT = autor.ORT;
             dto.VORNAME = autor.VORNAME;
             dto.GROESSE = autor.GROESSE;
+
+            // alle Bücher des Autors suchen
+            IEnumerable<Buch> buecher = autor.BUECHER;
+
+            // Links erstellen und in Liste speichern
+            foreach (Buch buch in buecher)            
+                dto.BuchLinks.Add(HostURL + "api/buecher/" + buch.ID.ToString());          
+    
             return dto;
         }
 
         // Route api/authors/id
         // z.B. api/authors/7
-        [HttpGet("{id}", Name = nameof(GetAuthor))]
+        [HttpGet("{id}")]
         public ActionResult<IEnumerable<Autor>> GetAuthor(int id)
         {
             // Autor im Repository anhand von ID suchen
@@ -76,25 +80,12 @@ namespace MasterarbeitRestServer.Controllers
             if (autor != null)
             {
                 // Autor gefunden --> Mappen und Links erzeugen
-                var autorDTO = MapAutor(autor);            
-                return Ok(CreateLinksForAuthor(autorDTO));
+                var autorDTO = MapAutor_CreateLinks(autor);            
+                return Ok(autorDTO);
             }
        
             // Nichts gefunden --> 404   
             return NotFound();            
-        }
-
-        // Links für den Autor erzeugen
-        private AutorDTO CreateLinksForAuthor(AutorDTO autor)
-        {
-            // Zuerst alle Bücher des Autors suchen
-            IEnumerable<Buch> buecher = _repository.GetBuecherVonAutor(autor.ID);
-
-            // Links erstellen und in Liste speichern
-            foreach (Buch buch in buecher)            
-                autor.Buecher.Add(HostURL + "api/books/" + buch.ID.ToString());            
-
-            return autor;
         }
 
 
