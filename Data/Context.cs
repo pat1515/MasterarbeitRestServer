@@ -10,16 +10,15 @@ namespace MasterarbeitRestServer.Data
             
         }
 
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder mb)
         {
-            modelBuilder.Entity<Buch>().HasOne<Autor>(b => b.AUTOR).WithMany(a => a.BUECHER).HasForeignKey(s => s.AUTOR_ID);
-        }
-        
+            mb.Entity<Buch>().
+                HasOne<Autor>(b => b.AUTOR).
+                WithMany(a => a.BUECHER).
+                HasForeignKey(s => s.AUTOR_ID);
+        }        
         
         public DbSet<Autor> AUTOR { get; set; }
-
         public DbSet<Buch> BUCH { get; set; }
-
     }
 }

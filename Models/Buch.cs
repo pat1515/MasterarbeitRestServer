@@ -14,6 +14,5 @@ namespace MasterarbeitRestServer.Models
         public string SPRACHE { get; set; }
         public string DRUCKORT { get; set; }
         public Autor AUTOR { get; set; }
-
     }
 }
