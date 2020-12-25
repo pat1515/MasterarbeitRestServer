@@ -47,7 +47,7 @@ namespace MasterarbeitRestServer.Controllers
         }
         
         [HttpGet("{id}")]  // Route api/autoren/id  (z.B. api/autoren/7)
-        public ActionResult<IEnumerable<Autor>> GetAutor(int id)
+        public ActionResult<Autor> GetAutor(int id)
         {
             // Autor im Repository anhand von ID suchen
             var autor = _repository.GetAutorAusId(id);  

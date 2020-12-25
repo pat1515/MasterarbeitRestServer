@@ -25,7 +25,7 @@ namespace MasterarbeitRestServer.Data
         // Autor anhand von ID lesen
         public Autor GetAutorAusId(int id)
         {
-            return _context.AUTOR.Include(async => async.BUECHER).FirstOrDefault(i => i.ID == id);         
+            return _context.AUTOR.Include(a => a.BUECHER).FirstOrDefault(i => i.ID == id);         
         }
 
         // Alle Bücher lesen
@@ -46,6 +46,7 @@ namespace MasterarbeitRestServer.Data
             return _context.BUCH.Where(b => b.AUTOR_ID == autor_id);
         }
 
+        // Die ersten X Autoren
         public IEnumerable<Autor> GetErsteXAutoren(int X)
         {
             return _context.AUTOR.Include(a => a.BUECHER).Where(i => i.ID <= X);

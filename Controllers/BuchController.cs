@@ -21,18 +21,18 @@ namespace MasterarbeitRestServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Buch>> GetAlleBuecher()
         {
-            var books = _repository.GetAlleBuecher();              
+            var buecher = _repository.GetAlleBuecher();              
 
-            if (books != null)
+            if (buecher != null)
             {
-                var booksDTO = new List<BuchDTO>(); 
+                var buecherDTO = new List<BuchDTO>(); 
 
-                foreach (var book in books)
+                foreach (var buch in buecher)
                 {
-                    booksDTO.Add(MapBuch(book));
+                    buecherDTO.Add(MapBuch(buch));
                 } 
 
-                return Ok(booksDTO);
+                return Ok(buecherDTO);
             }
        
             return NotFound();
@@ -40,14 +40,14 @@ namespace MasterarbeitRestServer.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Autor>> GetBuchAusId(int id)
+        public ActionResult<Buch> GetBuchAusId(int id)
         {
             var buch = _repository.GetBuchAusId(id);    
 
             if (buch != null)
             {
-                var bookDTO = MapBuch(buch);    
-                return Ok(bookDTO);       
+                var buchDTO = MapBuch(buch);    
+                return Ok(buchDTO);       
             }
        
             return NotFound();
