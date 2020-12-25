@@ -16,5 +16,8 @@ namespace MasterarbeitRestServer.Data
         
         // Ein bestimmtes Buch anhand der ID (Primärschlüssel) zurückgeben
         Buch GetBuchAusId(int id);
+
+        // Die ersten X Autoren
+        IEnumerable<Autor> GetErsteXAutoren(int X);          
     }
 }

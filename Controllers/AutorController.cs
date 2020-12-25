@@ -25,7 +25,7 @@ namespace MasterarbeitRestServer.Controllers
             _repository = repository;
         }
         
-        [HttpGet]  // Route api/authors
+        [HttpGet]  // Route api/autoren
         public ActionResult<IEnumerable<Autor>> GetAlleAutoren()
         {
             // Alle Autoren aus dem Repository lesen
@@ -46,7 +46,7 @@ namespace MasterarbeitRestServer.Controllers
             return NotFound();
         }
         
-        [HttpGet("{id}")]  // Route api/authors/id  (z.B. api/authors/7)
+        [HttpGet("{id}")]  // Route api/autoren/id  (z.B. api/autoren/7)
         public ActionResult<IEnumerable<Autor>> GetAutor(int id)
         {
             // Autor im Repository anhand von ID suchen
@@ -62,6 +62,27 @@ namespace MasterarbeitRestServer.Controllers
             // Nichts gefunden --> 404   
             return NotFound();            
         }
+
+        [HttpGet("erste/{first:int}")] // Route api/autoren/erste/"first"  (z.B. api/autoren/erste/3)
+        public ActionResult<IEnumerable<Autor>> GetErsteXAutoren(int first)
+        {
+            // Autor im Repository anhand von ID suchen
+            var autoren = _repository.GetErsteXAutoren(first);  
+            
+            if (autoren != null)
+            {
+                // Es wurden Autoren gefunden, Objekte werden in das DTO gemapped
+                var autorenDTO = new List<AutorDTO>(); 
+
+                foreach (var autor in autoren)                
+                    autorenDTO.Add(MapAutor_CreateLinks(autor));
+                 
+                return Ok(autorenDTO);
+            }
+       
+            // Nichts gefunden --> 404   
+            return NotFound();            
+        }        
 
         // Autor auf DTO mappen & Links erzeugen
         private AutorDTO MapAutor_CreateLinks(Autor autor)

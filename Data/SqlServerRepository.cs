@@ -19,7 +19,7 @@ namespace MasterarbeitRestServer.Data
         // Alle Autoren lesen
         public IEnumerable<Autor> GetAlleAutoren()
         {
-            return _context.AUTOR.Include(a => a.BUECHER);; // entspricht Inhalt der Tabelle AUTOR
+            return _context.AUTOR.Include(a => a.BUECHER); // entspricht Inhalt der Tabelle AUTOR
         }
 
         // Autor anhand von ID lesen
@@ -44,6 +44,11 @@ namespace MasterarbeitRestServer.Data
         public IEnumerable<Buch> GetBuecherVonAutor(int autor_id)
         {
             return _context.BUCH.Where(b => b.AUTOR_ID == autor_id);
+        }
+
+        public IEnumerable<Autor> GetErsteXAutoren(int X)
+        {
+            return _context.AUTOR.Include(a => a.BUECHER).Where(i => i.ID <= X);
         }
     }
 }
